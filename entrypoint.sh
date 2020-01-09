@@ -14,7 +14,7 @@ echo "args[0]: $1"
 dotnet restore
 dotnet build
 dotnet run --project src/GitHubActions.Teams.ConsoleApp -- \
-    --webhook-uri "$1" \
+    --webhook-uri "$WEBHOOK_URI" \
     --title "$TITLE" \
     --summary "$SUMMARY" \
     --text "$TEXT" \

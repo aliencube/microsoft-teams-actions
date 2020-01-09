@@ -17,11 +17,10 @@ jobs:
     - name: Run the private action
       uses: ./
       with:
-        webhook_uri: 'https://outlook.office.com/webhook/9892a05a-69f6-414e-800e-a5ed3b244038@41cf5bba-7f9a-43f9-bf2c-e1275ea7713f/IncomingWebhook/ee5661d190cf4a5788ee605d4b411860/6bbf6c2a-a2c7-492f-b0b1-c2a7e3d7477b'
-#        webhook_uri: ${{ secrets.WEBHOOK_URI }}
+        webhook_uri: ${{ secrets.WEBHOOK_URI }}
         title: ''
-        summary: ''
+        summary: 'GitHub Actions Message'
         text: ''
         theme_color: ''
-        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Invoked by ${{ github.event_name }}", "activityText": "Commit: ${{ github.sha }}" }]'
+        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Triggered by ${{ github.event_name }}", "activityText": "${{ github.event }}" }]'
         actions: ''

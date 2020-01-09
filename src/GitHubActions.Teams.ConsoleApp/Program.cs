@@ -55,8 +55,6 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
             var message = (string)null;
             var requestUri = options.WebhookUri;
 
-            Console.WriteLine(converted);
-
             using (var client = new HttpClient())
             using (var content = new StringContent(converted, Encoding.UTF8, "application/json"))
             using (var response = client.PostAsync(requestUri, content).Result)
@@ -69,7 +67,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
                 }
                 catch (HttpRequestException ex)
                 {
-                    message = JsonConvert.SerializeObject(ex.Data);
+                    message = ex.Message;
                 }
             }
 
