@@ -41,7 +41,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
 
         private static void Process(Options options)
         {
-            Console.WriteLine(options.WebhookUri.StartsWith("*"));
+            Console.WriteLine(options.WebhookUri);
 
             var card = new MessageCard()
             {
