@@ -55,7 +55,6 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
             var message = (string)null;
             var requestUri = options.WebhookUri;
 
-            Console.WriteLine(options.WebhookUri.StartsWith("https://outlook.office.com/webhook/"));
             Console.WriteLine(converted);
 
             using (var client = new HttpClient())
@@ -70,7 +69,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
                 }
                 catch (Exception ex)
                 {
-                    message = ex.Message;
+                    message = $"{ex.Message}:::{ex.GetType()}";
                 }
             }
 
