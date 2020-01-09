@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D68A84FF-6FCD-43F0-8BE4-95E80B08C98A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubActions.Teams.ConsoleApp", "src\GitHubActions.Teams.ConsoleApp\GitHubActions.Teams.ConsoleApp.csproj", "{AD57866E-EA88-459F-A0D9-536674AF120E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5C96E025-B004-4BF7-9FC7-3FD2D99BB1CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubActions.Teams.ConsoleApp.Tests", "test\GitHubActions.Teams.ConsoleApp.Tests\GitHubActions.Teams.ConsoleApp.Tests.csproj", "{CA78525C-AE74-4562-BC44-201722B8DF05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Debug|x64.Build.0 = Debug|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Release|x64.ActiveCfg = Release|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Release|x64.Build.0 = Release|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD57866E-EA88-459F-A0D9-536674AF120E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD57866E-EA88-459F-A0D9-536674AF120E} = {D68A84FF-6FCD-43F0-8BE4-95E80B08C98A}
+	EndGlobalSection
+EndGlobal
