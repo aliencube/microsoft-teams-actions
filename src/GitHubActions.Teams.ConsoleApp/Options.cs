@@ -22,7 +22,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
         /// <summary>
         /// Gets or sets the message summary.
         /// </summary>
-        [Option("summary", Required = false, Default = "", HelpText = "Message summary")]
+        [Option("summary", Required = true, HelpText = "Message summary")]
         public virtual string Summary { get; set; }
 
         /// <summary>
