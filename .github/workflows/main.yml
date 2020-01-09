@@ -17,10 +17,10 @@ jobs:
     - name: Run the private action
       uses: ./
       with:
-        webhook-uri: ${{ secrets.WEBHOOK_URI }}
+        webhook_uri: ${{ secrets.WEBHOOK_URI }}
         title: ''
         summary: ''
         text: ''
-        theme-color: ''
-        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Invoked by ${{ github.event_name }}", "activityText": "Commit: ${{ github.sha }}", }]'
+        theme_color: ''
+        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Invoked by ${{ github.event_name }}", "activityText": "Commit: ${{ github.sha }}" }]'
         actions: ''

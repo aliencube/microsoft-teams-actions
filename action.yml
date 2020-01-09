@@ -7,7 +7,7 @@ branding:
   color: purple
 
 inputs:
-  webhook-uri:
+  webhook_uri:
     description: Incoming webhook URI to Microsoft Teams
     required: true
   title:
@@ -22,7 +22,7 @@ inputs:
     description: Message text
     required: false
     default: ''
-  theme-color:
+  theme_color:
     description: Message theme color
     required: false
     default: ''
@@ -43,10 +43,10 @@ runs:
   using: docker
   image: Dockerfile
   env:
-    WEBHOOK_URI: ${{ inputs.webhook-uri }}
+    WEBHOOK_URI: ${{ inputs.webhook_uri }}
     TITLE: ${{ inputs.title }}
     SUMMARY: ${{ inputs.summary }}
     TEXT: ${{ inputs.text }}
-    THEME_COLOR: ${{ inputs.theme-color }}
+    THEME_COLOR: ${{ inputs.theme_color }}
     SECTIONS: ${{ inputs.sections }}
     ACTIONS: ${{ inputs.actions }}
