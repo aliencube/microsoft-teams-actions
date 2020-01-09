@@ -1,0 +1,52 @@
+name: Microsoft Teams (Generic)
+author: Aliencube Community
+description:  Send a message to the designated channel in Microsoft Teams
+
+branding:
+  icon: message-square
+  color: purple
+
+inputs:
+  webhook-uri:
+    description: Incoming webhook URI to Microsoft Teams
+    required: true
+  title:
+    description: Message title
+    required: false
+    default: ''
+  summary:
+    description: Message summary
+    required: false
+    default: ''
+  text:
+    description: Message text
+    required: false
+    default: ''
+  theme-color:
+    description: Message theme color
+    required: false
+    default: ''
+  sections:
+    description: JSON array for message sections
+    required: false
+    default: ''
+  actions:
+    description: JSON array for message actions
+    required: false
+    default: ''
+
+outputs:
+  message:
+    description: Message sent to Microsoft Teams
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    WEBHOOK_URI: ${{ inputs.webhook-uri }}
+    TITLE: ${{ inputs.title }}
+    SUMMARY: ${{ inputs.summary }}
+    TEXT: ${{ inputs.text }}
+    THEME_COLOR: ${{ inputs.theme-color }}
+    SECTIONS: ${{ inputs.sections }}
+    ACTIONS: ${{ inputs.actions }}
