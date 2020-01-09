@@ -67,9 +67,9 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
 
                     message = converted;
                 }
-                catch (Exception ex)
+                catch (HttpRequestException ex)
                 {
-                    message = $"{ex.Message}:::{ex.GetType()}";
+                    message = $"{ex.Message}";
                 }
             }
 
