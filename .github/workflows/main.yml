@@ -22,5 +22,5 @@ jobs:
         summary: 'GitHub Actions Message'
         text: ''
         theme_color: ''
-        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Triggered by ${{ github.event_name }}", "activityText": "${{ github.event }}" }]'
+        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Triggered by ${{ github.event_name }}", "activityText": "${{ toJSON(github.event) }}" }]'
         actions: ''
