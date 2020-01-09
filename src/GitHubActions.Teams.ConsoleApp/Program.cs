@@ -41,8 +41,6 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
 
         private static void Process(Options options)
         {
-            Console.WriteLine(options.WebhookUri.StartsWith("h"));
-
             var card = new MessageCard()
             {
                 Title = ParseString(options.Title),
@@ -56,6 +54,8 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
             var converted = JsonConvert.SerializeObject(card, settings);
             var message = (string)null;
             var requestUri = options.WebhookUri;
+
+            Console.WriteLine(converted);
 
             using (var client = new HttpClient())
             using (var content = new StringContent(converted, Encoding.UTF8, "application/json"))
