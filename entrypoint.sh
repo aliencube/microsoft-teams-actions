@@ -2,13 +2,13 @@
 
 cd /app
 
-echo "$WEBHOOK_URI"
-echo "$TITLE"
-echo "$SUMMARY"
-echo "$TEXT"
-echo "$THEME_COLOR"
-echo "$SECTIONS"
-echo "$ACTIONS"
+echo "URI: $WEBHOOK_URI"
+echo "Title: $TITLE"
+echo "Summary: $SUMMARY"
+echo "Text: $TEXT"
+echo "Color: $THEME_COLOR"
+echo "Sections: $SECTIONS"
+echo "Actions: $ACTIONS"
 
 dotnet restore
 dotnet build
