@@ -7,7 +7,7 @@ This is a GitHub Actions that sends a message to a given channel in Microsoft Te
 
 * `webhook-uri` (**Required**): Incoming webhook URI to Microsoft Teams
 * `title` (**Optional**): Message title
-* `summary` (**Optional**): Message summary
+* `summary` (**Required**): Message summary
 * `text` (**Optional**): Message text
 * `theme-color` (**Optional**): Message theme color
 * `sections` (**Optional**): JSON array for message sections
