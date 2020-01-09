@@ -69,7 +69,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
                 }
                 catch (HttpRequestException ex)
                 {
-                    message = ex.ToString();
+                    message = JsonConvert.SerializeObject(ex.Data);
                 }
             }
 
