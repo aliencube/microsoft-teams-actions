@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+    - dev
+
+jobs:
+  build_and_test:
+    name: Build and test the GitHub Action
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v1
+
+    - name: Run the private action
+      uses: ./
+      with:
+        webhook-uri: ${{ secrets.WEBHOOK_URI }}
+        title: ''
+        summary: ''
+        text: ''
+        theme-color: ''
+        sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Invoked by ${{ github.event_name }}", "activityText": ${{ github.sha }}, }]'
+        actions: ''
