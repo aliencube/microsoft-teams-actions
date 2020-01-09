@@ -43,39 +43,51 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
         {
             var card = new MessageCard()
             {
-                Title = options.Title,
-                Summary = options.Summary,
-                Text = options.Text,
-                ThemeColor = options.ThemeColor,
-                Sections = ParseSections(options.Sections),
-                Actions = ParseActions(options.Actions)
+                Title = ParseString(options.Title),
+                Summary = ParseString(options.Summary),
+                Text = ParseString(options.Text),
+                ThemeColor = ParseString(options.ThemeColor),
+                Sections = ParseCollection<Section>(options.Sections),
+                Actions = ParseCollection<BaseAction>(options.Actions)
             };
 
-            var converted = card.ToJson();
+            var converted = JsonConvert.SerializeObject(card, settings);
+            var message = (string)null;
+            var requestUri = options.WebhookUri;
 
             using (var client = new HttpClient())
+            using (var content = new StringContent(converted, Encoding.UTF8, "application/json"))
+            using (var response = client.PostAsync(requestUri, content).Result)
             {
-                var requestUri = options.WebhookUri;
-                var content = new StringContent(converted, Encoding.UTF8, "application/json");
+                try
+                {
+                    response.EnsureSuccessStatusCode();
 
-                var response = client.PostAsync(requestUri, content).Result;
+                    message = converted;
+                }
+                catch (Exception ex)
+                {
+                    message = ex.Message;
+                }
             }
+
+            Console.WriteLine($"Message sent: {message}");
         }
 
-        private static List<Section> ParseSections(string sections)
+        private static string ParseString(string value)
         {
-            var parsed = string.IsNullOrWhiteSpace(sections)
+            var parsed = string.IsNullOrWhiteSpace(value)
                          ? null
-                         : JsonConvert.DeserializeObject<List<Section>>(sections, settings);
+                         : value;
 
             return parsed;
         }
 
-        private static List<BaseAction> ParseActions(string actions)
+        private static List<T> ParseCollection<T>(string value)
         {
-            var parsed = string.IsNullOrWhiteSpace(actions)
+            var parsed = string.IsNullOrWhiteSpace(value)
                          ? null
-                         : JsonConvert.DeserializeObject<List<BaseAction>>(actions, settings);
+                         : JsonConvert.DeserializeObject<List<T>>(value, settings);
 
             return parsed;
         }
