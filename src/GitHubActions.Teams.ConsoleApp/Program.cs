@@ -55,6 +55,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
             var message = (string)null;
             var requestUri = options.WebhookUri;
 
+            Console.WriteLine(options.WebhookUri);
             Console.WriteLine(converted);
 
             using (var client = new HttpClient())

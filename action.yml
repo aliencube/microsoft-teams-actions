@@ -50,3 +50,5 @@ runs:
     THEME_COLOR: ${{ inputs.theme_color }}
     SECTIONS: ${{ inputs.sections }}
     ACTIONS: ${{ inputs.actions }}
+  args:
+  - ${{ inputs.webhook_uri }}
