@@ -3,7 +3,9 @@ name: Build and Test GitHub actions
 on:
   push:
     branches:
+    - master
     - dev
+    - release/*
 
 jobs:
   build_and_test:
