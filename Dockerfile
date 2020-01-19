@@ -8,7 +8,7 @@ LABEL "com.github.actions.color"="purple"
 
 LABEL "repository"="http://github.com/aliencube/microsoft-teams-actions"
 LABEL "homepage"="http://github.com/aliencube"
-LABEL "maintainer"="Justin Yoo <justin.yoojh@gmail.com>"
+LABEL "maintainer"="Justin Yoo <no-reply@aliencube.com>"
 
 COPY *.sln .
 COPY src/ ./src/

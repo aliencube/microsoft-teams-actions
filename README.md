@@ -23,7 +23,7 @@ This is a GitHub Actions that sends a message to a given channel in Microsoft Te
 ```yaml
 steps:
   name: Send a message to Microsoft Teams
-  uses: aliencube/microsoft-teams-actions@v1
+  uses: aliencube/microsoft-teams-actions@v0.7.0
   with:
     webhook-uri: <Microsoft Teams Incoming Webhook URI>
     title: <Message Title>
