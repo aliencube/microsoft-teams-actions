@@ -24,6 +24,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
                 ContractResolver = new DefaultContractResolver() { NamingStrategy = new CamelCaseNamingStrategy() },
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
+                Converters = new List<JsonConverter> { new ActionConverter() },
             };
 
         /// <summary>
