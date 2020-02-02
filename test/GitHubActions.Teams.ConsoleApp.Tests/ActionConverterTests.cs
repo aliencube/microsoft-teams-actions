@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+
 using Aliencube.GitHubActions.Teams.ConsoleApp;
 
 using FluentAssertions;
@@ -8,8 +11,6 @@ using MessageCardModel.Actions;
 using Newtonsoft.Json;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
 
 namespace GitHubActions.Teams.ConsoleApp.Tests
 {
@@ -21,6 +22,16 @@ namespace GitHubActions.Teams.ConsoleApp.Tests
         {
             typeof(ActionConverter)
                 .Should().BeDerivedFrom<JsonConverter>();
+        }
+
+        [TestMethod]
+        public void Given_Value_When_WriteJson_Invoked_THen_It_Should_Throw()
+        {
+            var converter = new ActionConverter();
+
+            Action action = () => converter.WriteJson(null, null, null);
+
+            action.Should().Throw<NotImplementedException>();
         }
 
         [DataTestMethod]
