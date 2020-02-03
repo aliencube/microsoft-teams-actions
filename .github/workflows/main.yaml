@@ -4,17 +4,45 @@ on:
   push:
     branches:
     - master
-    - dev
     - release/*
+    - dev
+  pull_request:
+    branches:
+    - dev
 
 jobs:
   build_and_test:
     name: Build and test the GitHub Action
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ 'ubuntu-latest' ]
+        dotnet: [ '3.1.100' ]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v1
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+
+    - name: Restore NuGet packages
+      shell: bash
+      run: |
+        dotnet restore
+
+    - name: Build console app
+      shell: bash
+      run: |
+        dotnet build
+
+    - name: Test console app
+      shell: bash
+      run: |
+        dotnet test test/**/*.csproj
 
     - name: Run the private action
       uses: ./
@@ -25,4 +53,4 @@ jobs:
         text: ''
         theme_color: ''
         sections: '[{ "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", "activityTitle": "GitHub Action invoked",  "activitySubtitle": "Event triggered by ${{ github.event.head_commit.author.name }}", "activityText": "Commit message: [${{ github.event.head_commit.message}}](${{ github.event.head_commit.url }})" }]'
-        actions: ''
+        actions: '[{ "@type": "OpenUri", "name": "View Commit", "targets": [{ "os": "default", "uri": "${{ github.event.head_commit.url }}" }] }]'

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Text;
 
 using CommandLine;
-
-using MessageCardModel;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -17,6 +15,16 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
     /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// Gets or sets the <see cref="IMessageHandler"/> instance.
+        /// </summary>
+        public static IMessageHandler MessageHandler { get; set; } = new MessageHandler();
+
+        /// <summary>
+        /// Gets or sets the <see cref="HttpClient"/> instance.
+        /// </summary>
+        public static HttpClient HttpClient { get; set; } = new HttpClient();
+
         private static JsonSerializerSettings settings { get; } =
             new JsonSerializerSettings()
             {
@@ -24,72 +32,37 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
                 ContractResolver = new DefaultContractResolver() { NamingStrategy = new CamelCaseNamingStrategy() },
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
+                Converters = new List<JsonConverter> { new ActionConverter() },
             };
 
         /// <summary>
         /// Invokes the console app.
         /// </summary>
         /// <param name="args">List of arguments passed.</param>
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             using (var parser = new Parser(with => { with.EnableDashDash = true; with.HelpWriter = Console.Out; }))
             {
-                parser.ParseArguments<Options>(args)
-                      .WithParsed<Options>(options => Process(options));
+                var result = parser.ParseArguments<Options>(args)
+                                   .MapResult(options => OnParsed(options), errors => OnNotParsed(errors))
+                                   ;
+
+                return result;
             }
         }
 
-        private static void Process(Options options)
+        private static int OnParsed(Options options)
         {
-            var card = new MessageCard()
-            {
-                Title = ParseString(options.Title),
-                Summary = ParseString(options.Summary),
-                Text = ParseString(options.Text),
-                ThemeColor = ParseString(options.ThemeColor),
-                Sections = ParseCollection<Section>(options.Sections),
-                Actions = ParseCollection<BaseAction>(options.Actions)
-            };
+            var result = MessageHandler.BuildMessage(options, settings)
+                                       .SendMessageAsync(HttpClient)
+                                       .Result;
 
-            var converted = JsonConvert.SerializeObject(card, settings);
-            var message = (string)null;
-            var requestUri = options.WebhookUri;
-
-            using (var client = new HttpClient())
-            using (var content = new StringContent(converted, Encoding.UTF8, "application/json"))
-            using (var response = client.PostAsync(requestUri, content).Result)
-            {
-                try
-                {
-                    response.EnsureSuccessStatusCode();
-
-                    message = converted;
-                }
-                catch (HttpRequestException ex)
-                {
-                    message = ex.Message;
-                }
-            }
-
-            Console.WriteLine($"Message sent: {message}");
+            return result;
         }
 
-        private static string ParseString(string value)
+        private static int OnNotParsed(IEnumerable<Error> errors)
         {
-            var parsed = string.IsNullOrWhiteSpace(value)
-                         ? null
-                         : value;
-
-            return parsed;
-        }
-
-        private static List<T> ParseCollection<T>(string value)
-        {
-            var parsed = string.IsNullOrWhiteSpace(value)
-                         ? null
-                         : JsonConvert.DeserializeObject<List<T>>(value, settings);
-
-            return parsed;
+            return errors.Count();
         }
     }
 }
