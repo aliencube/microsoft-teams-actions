@@ -11,10 +11,33 @@ jobs:
   build_and_test:
     name: Build and test the GitHub Action
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '3.1.100' ]
 
     steps:
     - name: Checkout the repository
       uses: actions/checkout@v1
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+
+    - name: Restore NuGet packages
+      shell: bash
+      run: |
+        dotnet restore
+
+    - name: Build console app
+      shell: bash
+      run: |
+        dotnet build
+
+    - name: Test console app
+      shell: bash
+      run: |
+        dotnet test test/**/*.csproj
 
     - name: Run the private action
       uses: ./
