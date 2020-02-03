@@ -12,7 +12,7 @@ jobs:
     name: Build and test the GitHub Action
     strategy:
       matrix:
-        os: [ 'ubuntu-latest' ]
+        os: [ 'windows-latest', 'ubuntu-latest', 'macos-latest' ]
         dotnet: [ '3.1.100' ]
 
     runs-on: ${{ matrix.os }}
