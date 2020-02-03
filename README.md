@@ -6,12 +6,12 @@ This is a GitHub Actions that sends a message to a given channel in Microsoft Te
 ## Inputs ##
 
 * `webhook-uri` (**Required**): Incoming webhook URI to Microsoft Teams
-* `title` (**Optional**): Message title
+* `title` (Optional): Message title
 * `summary` (**Required**): Message summary
-* `text` (**Optional**): Message text
-* `theme-color` (**Optional**): Message theme color
-* `sections` (**Optional**): JSON array for message sections
-* `actions` (**Optional**): JSON array for message actions
+* `text` (Optional): Message text
+* `theme-color` (Optional): Message theme color
+* `sections` (Optional): JSON array for message sections
+* `actions` (Optional): JSON array for message actions
 
 ## Outputs ##
 
@@ -23,16 +23,18 @@ This is a GitHub Actions that sends a message to a given channel in Microsoft Te
 ```yaml
 steps:
   name: Send a message to Microsoft Teams
-  uses: aliencube/microsoft-teams-actions@v0.7.0
+  uses: aliencube/microsoft-teams-actions@v0.8.0
   with:
-    webhook-uri: <Microsoft Teams Incoming Webhook URI>
+    webhook-uri: https://outlook.office.com/webhook/<GUID>/IncomingWebhook/<GUID>
     title: <Message Title>
     summary: <Message Summary>
     text: <Message Text>
     theme-color: <Message Theme Color>
-    sections: <JSON Array for Message Sections>
-    actions: <JSON Array for Message Actions>
+    sections: '[{ "activityTitle": "hello world" }, { ... }]'
+    actions: '[{ "@type": "OpenUri", "name": "lorem ipsum", "targets": [{ "os": "default", "uri": "https://localhost" }] }, { ... }]'
 ```
+
+> For more details about `sections` and `actions`: [https://docs.microsoft.com/outlook/actionable-messages/message-card-reference](https://docs.microsoft.com/outlook/actionable-messages/message-card-reference?WT.mc_id=aliencubeorg-github-juyoo)
 
 
 ## Contribution ##
