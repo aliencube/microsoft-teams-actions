@@ -3,6 +3,7 @@
 This is a GitHub Actions that sends a message to a given channel in Microsoft Teams, with the most generic way.
 
 
+
 ## Inputs ##
 
 * `webhook-uri` (**Required**): Incoming webhook URI to Microsoft Teams
