@@ -9,7 +9,7 @@ This is a GitHub Actions that sends a message to a given channel in Microsoft Te
 * `title` (Optional): Message title
 * `summary` (**Required**): Message summary
 * `text` (Optional): Message text
-* `theme-color` (Optional): Message theme color
+* `theme_color` (Optional): Message theme color
 * `sections` (Optional): JSON array for message sections
 * `actions` (Optional): JSON array for message actions
 
@@ -29,7 +29,7 @@ steps:
     title: <Message Title>
     summary: <Message Summary>
     text: <Message Text>
-    theme-color: <Message Theme Color>
+    theme_color: <Message Theme Color>
     sections: '[{ "activityTitle": "hello world" }, { ... }]'
     actions: '[{ "@type": "OpenUri", "name": "lorem ipsum", "targets": [{ "os": "default", "uri": "https://localhost" }] }, { ... }]'
 ```
