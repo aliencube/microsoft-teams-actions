@@ -5,7 +5,7 @@ This is a GitHub Actions that sends a message to a given channel in Microsoft Te
 
 ## Inputs ##
 
-* `webhook-uri` (**Required**): Incoming webhook URI to Microsoft Teams
+* `webhook_uri` (**Required**): Incoming webhook URI to Microsoft Teams
 * `title` (Optional): Message title
 * `summary` (**Required**): Message summary
 * `text` (Optional): Message text
@@ -25,7 +25,7 @@ steps:
   name: Send a message to Microsoft Teams
   uses: aliencube/microsoft-teams-actions@v0.8.0
   with:
-    webhook-uri: https://outlook.office.com/webhook/<GUID>/IncomingWebhook/<GUID>
+    webhook_uri: https://outlook.office.com/webhook/<GUID>/IncomingWebhook/<GUID>
     title: <Message Title>
     summary: <Message Summary>
     text: <Message Text>
