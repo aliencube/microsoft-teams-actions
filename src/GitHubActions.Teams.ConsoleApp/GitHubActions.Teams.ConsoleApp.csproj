@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
     <PackageReference Include="MessageCardModel" Version="1.0.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
 </Project>
