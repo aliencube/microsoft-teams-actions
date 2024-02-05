@@ -15,6 +15,13 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
     /// </summary>
     public static class Program
     {
+        static Program() {
+            HttpClient = new HttpClient(new RetryHandler(new HttpClientHandler()))
+            {
+                Timeout = TimeSpan.FromSeconds(100) // Default one, just to be easier to customize
+            };
+        }
+
         /// <summary>
         /// Gets or sets the <see cref="IMessageHandler"/> instance.
         /// </summary>
@@ -23,7 +30,7 @@ namespace Aliencube.GitHubActions.Teams.ConsoleApp
         /// <summary>
         /// Gets or sets the <see cref="HttpClient"/> instance.
         /// </summary>
-        public static HttpClient HttpClient { get; set; } = new HttpClient();
+        public static HttpClient HttpClient { get; set; }
 
         private static JsonSerializerSettings settings { get; } =
             new JsonSerializerSettings()
